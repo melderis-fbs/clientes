@@ -24,7 +24,6 @@ export async function fetchClientes(): Promise<Cliente[]> {
   });
 
   return response.results.map((page) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props = (page as any).properties as Record<string, any>;
 
     const nombre =
@@ -101,7 +100,6 @@ export async function fetchLeadMagnets(): Promise<LeadMagnet[]> {
   });
 
   return response.results.map((page) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props = (page as any).properties as Record<string, any>;
 
     const palabraClave =
@@ -175,7 +173,6 @@ export async function updateClienteInNotion(
     casoDeExito: boolean;
   }>
 ): Promise<void> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const properties: Record<string, any> = {};
 
   if (fields.instagram !== undefined) {
@@ -222,7 +219,6 @@ export async function updateLeadMagnetInNotion(
     tema: string;
   }>
 ): Promise<void> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const properties: Record<string, any> = {};
 
   if (fields.link !== undefined) {
