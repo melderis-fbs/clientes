@@ -93,7 +93,7 @@ export default function NuevoClienteForm() {
       {/* Floating button */}
       <button
         onClick={() => { setOpen(true); reset(); }}
-        className="fixed bottom-6 right-6 z-40 bg-[#0e7c66] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-[#0a6454] transition-colors"
+        className="fixed bottom-6 right-6 z-40 bg-[#18181b] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-[#09090b] transition-colors"
         title="Agregar nuevo cliente"
       >
         <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -131,12 +131,12 @@ export default function NuevoClienteForm() {
               {status === 'success' ? (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-3">✅</div>
-                  <p className="font-semibold text-[#0e7c66] text-lg mb-1">¡Cliente agregado!</p>
+                  <p className="font-semibold text-[#18181b] text-lg mb-1">¡Cliente agregado!</p>
                   <p className="text-sm text-neutral-500 mb-6">Ya aparece en la base de Notion. Recargá la app para verlo.</p>
                   <div className="flex gap-3 justify-center">
                     <button
                       onClick={reset}
-                      className="bg-[#0e7c66] text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-[#0a6454]"
+                      className="bg-[#18181b] text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-[#09090b]"
                     >
                       Agregar otro
                     </button>
@@ -155,7 +155,7 @@ export default function NuevoClienteForm() {
                     <label className="cursor-pointer flex flex-col items-center gap-2">
                       {pdfStatus === 'loading' ? (
                         <div className="flex items-center gap-2 text-sm text-neutral-500">
-                          <svg className="animate-spin h-4 w-4 text-[#0e7c66]" viewBox="0 0 24 24" fill="none">
+                          <svg className="animate-spin h-4 w-4 text-[#18181b]" viewBox="0 0 24 24" fill="none">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
                           </svg>
@@ -167,7 +167,7 @@ export default function NuevoClienteForm() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                           </svg>
                           <span className="text-sm text-neutral-500">
-                            <span className="text-[#0e7c66] font-semibold">Subir PDF</span> y auto-completar con IA
+                            <span className="text-[#18181b] font-semibold">Subir PDF</span> y auto-completar con IA
                           </span>
                         </>
                       )}
@@ -193,7 +193,7 @@ export default function NuevoClienteForm() {
                       value={form.nombre}
                       onChange={(e) => set('nombre', e.target.value)}
                       placeholder="Nombre completo"
-                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
                     />
                   </div>
 
@@ -204,7 +204,7 @@ export default function NuevoClienteForm() {
                       <select
                         value={form.nicho}
                         onChange={(e) => set('nicho', e.target.value)}
-                        className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white"
+                        className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white"
                       >
                         <option value="">— Elegir —</option>
                         {NICHOS.map((n) => <option key={n} value={n}>{n}</option>)}
@@ -215,7 +215,7 @@ export default function NuevoClienteForm() {
                       <select
                         value={form.estado}
                         onChange={(e) => set('estado', e.target.value)}
-                        className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white"
+                        className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white"
                       >
                         <option value="Activo">Activo</option>
                         <option value="Finalizado">Finalizado</option>
@@ -231,7 +231,7 @@ export default function NuevoClienteForm() {
                       value={form.instagram}
                       onChange={(e) => set('instagram', e.target.value)}
                       placeholder="@usuario o URL completa"
-                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
                       style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.8rem' }}
                     />
                   </div>
@@ -244,7 +244,7 @@ export default function NuevoClienteForm() {
                       value={form.profesion}
                       onChange={(e) => set('profesion', e.target.value)}
                       placeholder="Ej: Coach de vida"
-                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
                     />
                   </div>
 
@@ -256,7 +256,7 @@ export default function NuevoClienteForm() {
                       onChange={(e) => set('negocio', e.target.value)}
                       placeholder="Resumen de qué hace y cómo monetiza..."
                       rows={2}
-                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 resize-none"
+                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 resize-none"
                     />
                   </div>
 
@@ -268,7 +268,7 @@ export default function NuevoClienteForm() {
                       value={form.aQuienAyuda}
                       onChange={(e) => set('aQuienAyuda', e.target.value)}
                       placeholder="Ej: Mujeres emprendedoras 30-45"
-                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
                     />
                   </div>
 
@@ -280,7 +280,7 @@ export default function NuevoClienteForm() {
                       value={form.email}
                       onChange={(e) => set('email', e.target.value)}
                       placeholder="cliente@email.com"
-                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+                      className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
                     />
                   </div>
 
@@ -292,7 +292,7 @@ export default function NuevoClienteForm() {
                     <button
                       type="submit"
                       disabled={status === 'loading' || !form.nombre.trim()}
-                      className="flex-1 bg-[#0e7c66] text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-[#0a6454] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="flex-1 bg-[#18181b] text-white rounded-lg px-4 py-2.5 text-sm font-medium hover:bg-[#09090b] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {status === 'loading' && (
                         <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">

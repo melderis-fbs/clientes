@@ -8,7 +8,7 @@ function Spinner() {
   return (
     <div className="flex items-center justify-center py-16">
       <svg
-        className="animate-spin h-8 w-8 text-[#0e7c66]"
+        className="animate-spin h-8 w-8 text-[#18181b]"
         viewBox="0 0 24 24"
         fill="none"
       >
@@ -132,7 +132,7 @@ export default function ClientesTab() {
             placeholder="Buscar clientes..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full border border-neutral-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+            className="w-full border border-neutral-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
           />
         </div>
         <div className="flex gap-2">

@@ -21,7 +21,7 @@ export default function TabNav({ activeTab, onTabChange }: TabNavProps) {
               relative px-4 py-3 text-sm font-medium transition-colors focus:outline-none
               ${
                 isActive
-                  ? 'text-[#0e7c66]'
+                  ? 'text-[#18181b]'
                   : 'text-neutral-500 hover:text-neutral-800'
               }
             `}

@@ -7,7 +7,7 @@ import LeadMagnetCard from './LeadMagnetCard';
 function Spinner() {
   return (
     <div className="flex items-center justify-center py-16">
-      <svg className="animate-spin h-8 w-8 text-[#0e7c66]" viewBox="0 0 24 24" fill="none">
+      <svg className="animate-spin h-8 w-8 text-[#18181b]" viewBox="0 0 24 24" fill="none">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
       </svg>
@@ -140,14 +140,14 @@ export default function LeadMagnetsTab() {
             placeholder="Buscar lead magnets..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full border border-neutral-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40"
+            className="w-full border border-neutral-200 rounded-lg pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40"
           />
         </div>
         {allTemas.length > 0 && (
           <select
             value={filterTema}
             onChange={(e) => setFilterTema(e.target.value)}
-            className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white text-neutral-700"
+            className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white text-neutral-700"
           >
             <option value="">Todos los temas</option>
             {allTemas.map((t) => (

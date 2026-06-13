@@ -115,7 +115,7 @@ export default function AIAssistant() {
                       value={nicho}
                       onChange={(e) => setNicho(e.target.value)}
                       required
-                      className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white text-neutral-700"
+                      className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white text-neutral-700"
                     >
                       <option value="">Seleccioná un nicho…</option>
                       {NICHOS.map((n) => (
@@ -136,7 +136,7 @@ export default function AIAssistant() {
                       required
                       rows={2}
                       placeholder="Ej: Coach de inglés que vende cursos online…"
-                      className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 resize-none"
+                      className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 resize-none"
                     />
                   </div>
 
@@ -150,7 +150,7 @@ export default function AIAssistant() {
                       required
                       rows={3}
                       placeholder="Ej: El lead dice que no tiene tiempo y que lo piensa…"
-                      className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 resize-none"
+                      className="border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 resize-none"
                     />
                   </div>
 
@@ -196,7 +196,7 @@ export default function AIAssistant() {
                         onClick={handleCopyResultado}
                         className={`text-xs px-2.5 py-1 rounded-lg border transition-colors ${
                           copied
-                            ? 'border-[#0e7c66]/30 bg-[#0e7c66]/10 text-[#0e7c66]'
+                            ? 'border-[#18181b]/30 bg-[#18181b]/10 text-[#18181b]'
                             : 'border-neutral-200 text-neutral-500 hover:bg-neutral-50'
                         }`}
                       >

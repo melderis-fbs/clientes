@@ -203,7 +203,7 @@ export default function LeadMagnetCard({ lm, onUpdate }: LeadMagnetCardProps) {
               </p>
             )}
             {saveSuccess && (
-              <p className="text-xs text-[#0e7c66] bg-[#0e7c66]/10 rounded-lg px-3 py-2">
+              <p className="text-xs text-[#18181b] bg-[#18181b]/10 rounded-lg px-3 py-2">
                 ¡Guardado correctamente!
               </p>
             )}
@@ -212,7 +212,7 @@ export default function LeadMagnetCard({ lm, onUpdate }: LeadMagnetCardProps) {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="bg-[#0e7c66] text-white hover:bg-[#0a6454] rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
+                className="bg-[#18181b] text-white hover:bg-[#09090b] rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
               >
                 {saving && (
                   <svg className="animate-spin h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
@@ -241,7 +241,7 @@ export default function LeadMagnetCard({ lm, onUpdate }: LeadMagnetCardProps) {
                 href={lm.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#0e7c66] text-white hover:bg-[#0a6454] rounded-lg px-4 py-2 text-sm font-medium"
+                className="bg-[#18181b] text-white hover:bg-[#09090b] rounded-lg px-4 py-2 text-sm font-medium"
               >
                 Abrir link
               </a>

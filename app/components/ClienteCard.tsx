@@ -117,7 +117,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
                 href={instagramUrl(cliente.instagram)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-[#0e7c66] hover:underline"
+                className="text-xs text-[#18181b] hover:underline"
                 style={{ fontFamily: "'Space Mono', monospace" }}
               >
                 {instagramDisplay(cliente.instagram)}
@@ -128,7 +128,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
             {cliente.estado && (
               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
                 cliente.estado === 'Activo'
-                  ? 'bg-[#0e7c66]/10 text-[#0e7c66]'
+                  ? 'bg-[#18181b]/10 text-[#18181b]'
                   : 'bg-neutral-100 text-neutral-500'
               }`}>
                 {cliente.estado}
@@ -193,7 +193,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
               <select
                 value={draft.nicho}
                 onChange={(e) => setDraft((d) => ({ ...d, nicho: e.target.value }))}
-                className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white"
+                className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white"
               >
                 <option value="">— Sin nicho —</option>
                 {NICHOS.map((n) => (
@@ -246,7 +246,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
               <select
                 value={draft.estado}
                 onChange={(e) => setDraft((d) => ({ ...d, estado: e.target.value }))}
-                className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white"
+                className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white"
               >
                 <option value="">— Sin estado —</option>
                 <option value="Activo">Activo</option>
@@ -260,7 +260,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
               </p>
             )}
             {saveSuccess && (
-              <p className="text-xs text-[#0e7c66] bg-[#0e7c66]/10 rounded-lg px-3 py-2">
+              <p className="text-xs text-[#18181b] bg-[#18181b]/10 rounded-lg px-3 py-2">
                 ¡Guardado correctamente!
               </p>
             )}
@@ -269,7 +269,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="bg-[#0e7c66] text-white hover:bg-[#0a6454] rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
+                className="bg-[#18181b] text-white hover:bg-[#09090b] rounded-lg px-4 py-2 text-sm font-medium disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1.5"
               >
                 {saving && (
                   <svg

@@ -16,7 +16,7 @@ export default function EditableField({
   placeholder = '',
 }: EditableFieldProps) {
   const inputClass =
-    'w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white';
+    'w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#18181b]/40 bg-white';
 
   return (
     <div className="flex flex-col gap-1">
