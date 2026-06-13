@@ -6,6 +6,7 @@ import TabNav from './components/TabNav';
 import ClientesTab from './components/ClientesTab';
 import LeadMagnetsTab from './components/LeadMagnetsTab';
 import NuevoClienteForm from './components/NuevoClienteForm';
+import AIAssistant from './components/AIAssistant';
 
 type Tab = 'clientes' | 'leadmagnets';
 
@@ -25,6 +26,7 @@ export default function HomePage() {
         </main>
       </div>
       <NuevoClienteForm />
+      <AIAssistant />
     </div>
   );
 }

@@ -59,7 +59,7 @@ export default function AIAssistant() {
       {/* Floating button */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all"
+        className="fixed bottom-24 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full text-white font-semibold text-sm shadow-lg hover:shadow-xl transition-all"
         style={{ backgroundColor: 'var(--accent)' }}
         aria-label="Abrir asistente IA"
       >

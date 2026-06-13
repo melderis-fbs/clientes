@@ -15,12 +15,15 @@ const EMPTY = {
 };
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
+type PdfStatus = 'idle' | 'loading' | 'error';
 
 export default function NuevoClienteForm() {
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(EMPTY);
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [pdfStatus, setPdfStatus] = useState<PdfStatus>('idle');
+  const [pdfError, setPdfError] = useState('');
 
   function set(field: keyof typeof EMPTY, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
@@ -30,6 +33,37 @@ export default function NuevoClienteForm() {
     setForm(EMPTY);
     setStatus('idle');
     setErrorMsg('');
+    setPdfStatus('idle');
+    setPdfError('');
+  }
+
+  async function handlePdf(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setPdfStatus('loading');
+    setPdfError('');
+    try {
+      const fd = new FormData();
+      fd.append('pdf', file);
+      const res = await fetch('/api/extraer-cliente', { method: 'POST', body: fd });
+      if (!res.ok) throw new Error((await res.json()).detail || 'Error al procesar PDF');
+      const data = await res.json();
+      setForm((f) => ({
+        ...f,
+        nombre: data.nombre || f.nombre,
+        instagram: data.instagram || f.instagram,
+        profesion: data.profesion || f.profesion,
+        negocio: data.negocio || f.negocio,
+        aQuienAyuda: data.aQuienAyuda || f.aQuienAyuda,
+        email: data.email || f.email,
+        nicho: data.nicho || f.nicho,
+      }));
+      setPdfStatus('idle');
+    } catch (err) {
+      setPdfError(err instanceof Error ? err.message : 'Error al leer el PDF');
+      setPdfStatus('error');
+    }
+    e.target.value = '';
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -116,6 +150,38 @@ export default function NuevoClienteForm() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* PDF auto-fill */}
+                  <div className="rounded-xl border border-dashed border-neutral-300 bg-neutral-50 p-4 text-center">
+                    <label className="cursor-pointer flex flex-col items-center gap-2">
+                      {pdfStatus === 'loading' ? (
+                        <div className="flex items-center gap-2 text-sm text-neutral-500">
+                          <svg className="animate-spin h-4 w-4 text-[#0e7c66]" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                          </svg>
+                          Leyendo PDF con IA...
+                        </div>
+                      ) : (
+                        <>
+                          <svg className="h-6 w-6 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                          </svg>
+                          <span className="text-sm text-neutral-500">
+                            <span className="text-[#0e7c66] font-semibold">Subir PDF</span> y auto-completar con IA
+                          </span>
+                        </>
+                      )}
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        onChange={handlePdf}
+                        disabled={pdfStatus === 'loading'}
+                      />
+                    </label>
+                    {pdfError && <p className="text-xs text-red-500 mt-2">{pdfError}</p>}
+                  </div>
+
                   {/* Nombre — required */}
                   <div>
                     <label className="block text-xs font-semibold text-neutral-500 mb-1">
