@@ -9,6 +9,7 @@ export interface Cliente {
   testimonio: string;
   estado: string;
   email: string;
+  noFue: boolean;
 }
 
 export interface LeadMagnet {

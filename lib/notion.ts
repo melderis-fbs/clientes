@@ -64,6 +64,11 @@ export async function fetchClientes(): Promise<Cliente[]> {
       richText(props['A quien ayuda']?.rich_text) ||
       '';
 
+    const noFue =
+      props['NO']?.checkbox ??
+      props['no']?.checkbox ??
+      false;
+
     const testimonio =
       props['Testimonio']?.url ??
       props['testimonio']?.url ??
@@ -88,6 +93,7 @@ export async function fetchClientes(): Promise<Cliente[]> {
       profesion,
       negocio,
       aQuienAyuda,
+      noFue,
       testimonio,
       estado,
       email,
