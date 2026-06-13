@@ -82,9 +82,6 @@ export default function LeadMagnetsTab() {
 
   function renderGroup(title: string, items: LeadMagnet[], icon: React.ReactNode) {
     if (items.length === 0) return null;
-    const byTema = groupByTema(items);
-    const temas = Object.keys(byTema).sort();
-
     return (
       <section key={title} className="mb-8">
         <div className="flex items-center gap-2 mb-4">
@@ -102,21 +99,11 @@ export default function LeadMagnetsTab() {
             ({items.length})
           </span>
         </div>
-
-        {temas.map((tema) => (
-          <div key={tema} className="mb-5">
-            {temas.length > 1 && (
-              <h3 className="text-sm font-semibold text-neutral-500 mb-2 pl-1 border-l-2 border-neutral-200">
-                {tema}
-              </h3>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {byTema[tema].map((lm) => (
-                <LeadMagnetCard key={lm.id} lm={lm} onUpdate={handleUpdate} />
-              ))}
-            </div>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {items.map((lm) => (
+            <LeadMagnetCard key={lm.id} lm={lm} onUpdate={handleUpdate} />
+          ))}
+        </div>
       </section>
     );
   }

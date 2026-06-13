@@ -5,7 +5,7 @@ import Header from './components/Header';
 import TabNav from './components/TabNav';
 import ClientesTab from './components/ClientesTab';
 import LeadMagnetsTab from './components/LeadMagnetsTab';
-import AIAssistant from './components/AIAssistant';
+import NuevoClienteForm from './components/NuevoClienteForm';
 
 type Tab = 'clientes' | 'leadmagnets';
 
@@ -24,7 +24,7 @@ export default function HomePage() {
           {activeTab === 'clientes' ? <ClientesTab /> : <LeadMagnetsTab />}
         </main>
       </div>
-      <AIAssistant />
+      <NuevoClienteForm />
     </div>
   );
 }

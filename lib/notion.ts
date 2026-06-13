@@ -268,3 +268,38 @@ export async function updateLeadMagnetInNotion(
 
   await notion.pages.update({ page_id: id, properties });
 }
+
+// ---------------------------------------------------------------------------
+// createClienteInNotion
+// ---------------------------------------------------------------------------
+export async function createClienteInNotion(fields: {
+  nombre: string;
+  instagram?: string;
+  nicho?: string;
+  profesion?: string;
+  negocio?: string;
+  aQuienAyuda?: string;
+  email?: string;
+  estado?: string;
+}): Promise<string> {
+  const dbId = process.env.NOTION_CLIENTES_DB_ID;
+  if (!dbId) throw new Error('NOTION_CLIENTES_DB_ID is not set');
+
+  const properties: Record<string, any> = {
+    Nombre: { title: [{ text: { content: fields.nombre } }] },
+  };
+  if (fields.instagram) properties['Instagram'] = { url: fields.instagram };
+  if (fields.nicho) properties['Nicho'] = { select: { name: fields.nicho } };
+  if (fields.profesion) properties['Profesión'] = { rich_text: [{ text: { content: fields.profesion } }] };
+  if (fields.negocio) properties['Negocio'] = { rich_text: [{ text: { content: fields.negocio } }] };
+  if (fields.aQuienAyuda) properties['A quién ayuda'] = { rich_text: [{ text: { content: fields.aQuienAyuda } }] };
+  if (fields.email) properties['Email'] = { email: fields.email };
+  if (fields.estado) properties['Estado'] = { select: { name: fields.estado } };
+
+  const page = await notion.pages.create({
+    parent: { database_id: dbId },
+    properties,
+  });
+
+  return page.id;
+}

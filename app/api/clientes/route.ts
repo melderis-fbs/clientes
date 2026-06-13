@@ -1,7 +1,24 @@
 import { NextResponse } from 'next/server';
-import { fetchClientes } from '@/lib/notion';
+import { fetchClientes, createClienteInNotion } from '@/lib/notion';
 
 export const revalidate = 60;
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    if (!body.nombre?.trim()) {
+      return NextResponse.json({ error: 'El nombre es requerido' }, { status: 400 });
+    }
+    const id = await createClienteInNotion(body);
+    return NextResponse.json({ ok: true, id });
+  } catch (error) {
+    console.error('Error creating cliente:', error);
+    return NextResponse.json(
+      { error: 'No se pudo crear el cliente', detail: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
+  }
+}
 
 export async function GET() {
   try {

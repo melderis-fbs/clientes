@@ -12,7 +12,7 @@ export default function Header() {
             color: 'var(--accent)',
           }}
         >
-          Biblioteca Comercial
+          Biblioteca Clientes
         </h1>
         <span
           className="text-sm font-medium"
