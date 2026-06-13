@@ -17,16 +17,18 @@ export async function GET() {
   const notion = new Client({ auth: token });
 
   try {
-    await notion.databases.retrieve({ database_id: clientesDbId! });
+    const db = await notion.databases.retrieve({ database_id: clientesDbId! });
     result.clientesDb = 'OK';
+    result.clientesProps = Object.keys((db as any).properties);
   } catch (e: unknown) {
     result.clientesDb = 'ERROR';
     result.clientesError = e instanceof Error ? e.message : String(e);
   }
 
   try {
-    await notion.databases.retrieve({ database_id: leadmagnetsDbId! });
+    const db = await notion.databases.retrieve({ database_id: leadmagnetsDbId! });
     result.leadmagnetsDb = 'OK';
+    result.leadmagnetsProps = Object.keys((db as any).properties);
   } catch (e: unknown) {
     result.leadmagnetsDb = 'ERROR';
     result.leadmagnetsError = e instanceof Error ? e.message : String(e);
