@@ -10,7 +10,7 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching clientes:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch clientes' },
+      { error: 'Failed to fetch clientes', detail: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
