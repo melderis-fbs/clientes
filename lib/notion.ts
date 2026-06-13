@@ -18,12 +18,20 @@ export async function fetchClientes(): Promise<Cliente[]> {
   const dbId = process.env.NOTION_CLIENTES_DB_ID;
   if (!dbId) throw new Error('NOTION_CLIENTES_DB_ID is not set');
 
-  const response = await notion.databases.query({
-    database_id: dbId,
-    page_size: 100,
-  });
+  const allResults: any[] = [];
+  let cursor: string | undefined;
 
-  return response.results.map((page) => {
+  do {
+    const page = await notion.databases.query({
+      database_id: dbId,
+      page_size: 100,
+      ...(cursor ? { start_cursor: cursor } : {}),
+    });
+    allResults.push(...page.results);
+    cursor = page.has_more ? (page.next_cursor ?? undefined) : undefined;
+  } while (cursor);
+
+  return allResults.map((page) => {
     const props = (page as any).properties as Record<string, any>;
 
     const nombre =
@@ -94,12 +102,20 @@ export async function fetchLeadMagnets(): Promise<LeadMagnet[]> {
   const dbId = process.env.NOTION_LEADMAGNETS_DB_ID;
   if (!dbId) throw new Error('NOTION_LEADMAGNETS_DB_ID is not set');
 
-  const response = await notion.databases.query({
-    database_id: dbId,
-    page_size: 100,
-  });
+  const allResults: any[] = [];
+  let cursor: string | undefined;
 
-  return response.results.map((page) => {
+  do {
+    const page = await notion.databases.query({
+      database_id: dbId,
+      page_size: 100,
+      ...(cursor ? { start_cursor: cursor } : {}),
+    });
+    allResults.push(...page.results);
+    cursor = page.has_more ? (page.next_cursor ?? undefined) : undefined;
+  } while (cursor);
+
+  return allResults.map((page) => {
     const props = (page as any).properties as Record<string, any>;
 
     const palabraClave =
