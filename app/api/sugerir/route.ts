@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
       fetchClientes(),
     ]);
 
-    // Filter relevant casos de éxito
-    const casosDeExito = clientes.filter((c) => c.casoDeExito);
+    // Filter clients with testimonios
+    const casosDeExito = clientes.filter((c) => c.testimonio);
     const casosRelevantes = casosDeExito.filter(
       (c) => c.nicho.toLowerCase() === nicho.toLowerCase()
     );

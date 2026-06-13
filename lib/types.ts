@@ -6,8 +6,8 @@ export interface Cliente {
   profesion: string;
   negocio: string;
   aQuienAyuda: string;
-  casoDeExito: boolean;
   testimonio: string;
+  estado: string;
   email: string;
 }
 

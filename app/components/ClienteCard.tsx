@@ -41,7 +41,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
     aQuienAyuda: cliente.aQuienAyuda,
     testimonio: cliente.testimonio,
     email: cliente.email,
-    casoDeExito: cliente.casoDeExito,
+    estado: cliente.estado,
     nicho: cliente.nicho,
   });
 
@@ -53,7 +53,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
       aQuienAyuda: cliente.aQuienAyuda,
       testimonio: cliente.testimonio,
       email: cliente.email,
-      casoDeExito: cliente.casoDeExito,
+      estado: cliente.estado,
       nicho: cliente.nicho,
     });
     setSaveError('');
@@ -91,12 +91,12 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
     }
   }
 
-  const isExito = cliente.casoDeExito;
+  const tieneTestimonio = !!cliente.testimonio;
 
   return (
     <div
       className={`rounded-xl border border-neutral-200 bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden ${
-        isExito ? 'border-l-4 border-l-[#b3810a]' : ''
+        tieneTestimonio ? 'border-l-4 border-l-[#b3810a]' : ''
       }`}
     >
       <div className="p-4 sm:p-5">
@@ -124,14 +124,23 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
               </a>
             )}
           </div>
-          <div className="flex items-center gap-2 flex-shrink-0">
-            {isExito ? (
+          <div className="flex items-center gap-2 flex-shrink-0 flex-wrap justify-end">
+            {cliente.estado && (
+              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
+                cliente.estado === 'Activo'
+                  ? 'bg-[#0e7c66]/10 text-[#0e7c66]'
+                  : 'bg-neutral-100 text-neutral-500'
+              }`}>
+                {cliente.estado}
+              </span>
+            )}
+            {tieneTestimonio ? (
               <span className="bg-[#b3810a]/10 text-[#b3810a] text-xs font-semibold px-2 py-0.5 rounded-full whitespace-nowrap">
-                Caso de éxito ⭐
+                Testimonio ▶
               </span>
             ) : (
               <span className="text-xs text-neutral-400 bg-neutral-100 px-2 py-0.5 rounded-full">
-                Sin caso
+                Sin testimonio
               </span>
             )}
           </div>
@@ -161,7 +170,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
             {cliente.email && (
               <p className="text-xs text-neutral-400 mt-2">{cliente.email}</p>
             )}
-            {isExito && cliente.testimonio && (
+            {tieneTestimonio && (
               <div className="mt-3">
                 <a
                   href={cliente.testimonio}
@@ -232,22 +241,17 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
               type="email"
               placeholder="ejemplo@email.com"
             />
-            <div className="flex items-center gap-2">
-              <input
-                id={`caso-${cliente.id}`}
-                type="checkbox"
-                checked={draft.casoDeExito}
-                onChange={(e) =>
-                  setDraft((d) => ({ ...d, casoDeExito: e.target.checked }))
-                }
-                className="w-4 h-4 accent-[#0e7c66] cursor-pointer"
-              />
-              <label
-                htmlFor={`caso-${cliente.id}`}
-                className="text-sm font-medium text-neutral-700 cursor-pointer"
+            <div>
+              <label className="block text-xs font-semibold text-neutral-500 mb-1">Estado</label>
+              <select
+                value={draft.estado}
+                onChange={(e) => setDraft((d) => ({ ...d, estado: e.target.value }))}
+                className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white"
               >
-                Caso de éxito
-              </label>
+                <option value="">— Sin estado —</option>
+                <option value="Activo">Activo</option>
+                <option value="Finalizado">Finalizado</option>
+              </select>
             </div>
 
             {saveError && (

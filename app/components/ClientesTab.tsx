@@ -35,7 +35,7 @@ export default function ClientesTab() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showOnlyExito, setShowOnlyExito] = useState(false);
+  const [showConTestimonio, setShowConTestimonio] = useState(false);
   const [allOpen, setAllOpen] = useState(false);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
@@ -60,7 +60,7 @@ export default function ClientesTab() {
 
   // Compute filtered list
   const filtered = clientes.filter((c) => {
-    if (showOnlyExito && !c.casoDeExito) return false;
+    if (showConTestimonio && !c.testimonio) return false;
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
     return (
@@ -107,7 +107,7 @@ export default function ClientesTab() {
     );
   }
 
-  const totalExito = clientes.filter((c) => c.casoDeExito).length;
+  const totalConTestimonio = clientes.filter((c) => c.testimonio).length;
 
   return (
     <div>
@@ -137,14 +137,14 @@ export default function ClientesTab() {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => setShowOnlyExito((v) => !v)}
+            onClick={() => setShowConTestimonio((v) => !v)}
             className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors whitespace-nowrap ${
-              showOnlyExito
+              showConTestimonio
                 ? 'bg-[#b3810a]/10 border-[#b3810a]/30 text-[#b3810a]'
                 : 'border-neutral-300 text-neutral-600 hover:bg-neutral-50'
             }`}
           >
-            Solo casos de éxito {showOnlyExito ? `(${totalExito})` : ''}
+            Con testimonio {showConTestimonio ? `(${totalConTestimonio})` : ''}
           </button>
           <button
             onClick={handleToggleAll}
@@ -159,7 +159,7 @@ export default function ClientesTab() {
       {!loading && !error && (
         <p className="text-xs text-neutral-400 mb-4" style={{ fontFamily: "'Space Mono', monospace" }}>
           {filtered.length} cliente{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}
-          {showOnlyExito ? ' (solo casos de éxito)' : ''}
+          {showConTestimonio ? ' (con testimonio)' : ''}
           {searchQuery ? ` para "${searchQuery}"` : ''}
         </p>
       )}
@@ -189,7 +189,7 @@ export default function ClientesTab() {
       <div className="space-y-4">
         {nichos.map((nicho) => {
           const items = grouped[nicho];
-          const exitoCount = items.filter((c) => c.casoDeExito).length;
+          const exitoCount = items.filter((c) => c.testimonio).length;
           const open = isGroupOpen(nicho);
 
           return (

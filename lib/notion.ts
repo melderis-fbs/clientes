@@ -64,15 +64,15 @@ export async function fetchClientes(): Promise<Cliente[]> {
       richText(props['A quien ayuda']?.rich_text) ||
       '';
 
-    const casoDeExito =
-      props['Caso de éxito']?.checkbox ??
-      props['Caso de exito']?.checkbox ??
-      false;
-
     const testimonio =
       props['Testimonio']?.url ??
       props['testimonio']?.url ??
       richText(props['Testimonio']?.rich_text) ??
+      '';
+
+    const estado =
+      props['Estado']?.select?.name ??
+      props['estado']?.select?.name ??
       '';
 
     const email =
@@ -88,8 +88,8 @@ export async function fetchClientes(): Promise<Cliente[]> {
       profesion,
       negocio,
       aQuienAyuda,
-      casoDeExito,
       testimonio,
+      estado,
       email,
     } satisfies Cliente;
   });
@@ -186,7 +186,7 @@ export async function updateClienteInNotion(
     profesion: string;
     aQuienAyuda: string;
     email: string;
-    casoDeExito: boolean;
+    estado: string;
     nicho: string;
   }>
 ): Promise<void> {
@@ -194,6 +194,9 @@ export async function updateClienteInNotion(
 
   if (fields.nicho !== undefined) {
     properties['Nicho'] = { select: fields.nicho ? { name: fields.nicho } : null };
+  }
+  if (fields.estado !== undefined) {
+    properties['Estado'] = { select: fields.estado ? { name: fields.estado } : null };
   }
   if (fields.instagram !== undefined) {
     properties['Instagram'] = { url: fields.instagram || null };
@@ -218,9 +221,6 @@ export async function updateClienteInNotion(
   }
   if (fields.email !== undefined) {
     properties['Email'] = { email: fields.email || null };
-  }
-  if (fields.casoDeExito !== undefined) {
-    properties['Caso de éxito'] = { checkbox: fields.casoDeExito };
   }
 
   await notion.pages.update({ page_id: id, properties });
