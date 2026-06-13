@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Cliente } from '@/lib/types';
+import { NICHOS } from '@/lib/types';
 import EditableField from './EditableField';
 
 interface ClienteCardProps {
@@ -41,6 +42,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
     testimonio: cliente.testimonio,
     email: cliente.email,
     casoDeExito: cliente.casoDeExito,
+    nicho: cliente.nicho,
   });
 
   function startEdit() {
@@ -52,6 +54,7 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
       testimonio: cliente.testimonio,
       email: cliente.email,
       casoDeExito: cliente.casoDeExito,
+      nicho: cliente.nicho,
     });
     setSaveError('');
     setSaveSuccess(false);
@@ -176,6 +179,19 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
         {/* Edit mode */}
         {editing && (
           <div className="space-y-3 mt-2">
+            <div>
+              <label className="block text-xs font-semibold text-neutral-500 mb-1">Nicho</label>
+              <select
+                value={draft.nicho}
+                onChange={(e) => setDraft((d) => ({ ...d, nicho: e.target.value }))}
+                className="w-full border border-neutral-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0e7c66]/40 bg-white"
+              >
+                <option value="">— Sin nicho —</option>
+                {NICHOS.map((n) => (
+                  <option key={n} value={n}>{n}</option>
+                ))}
+              </select>
+            </div>
             <EditableField
               label="Instagram"
               value={draft.instagram}

@@ -140,8 +140,8 @@ export async function fetchLeadMagnets(): Promise<LeadMagnet[]> {
       '';
 
     const cuandoEnviar =
-      richText(props['Cuándo enviar']?.rich_text) ||
       richText(props['Cuando enviar']?.rich_text) ||
+      richText(props['Cuándo enviar']?.rich_text) ||
       '';
 
     const dirigidoA =
@@ -187,10 +187,14 @@ export async function updateClienteInNotion(
     aQuienAyuda: string;
     email: string;
     casoDeExito: boolean;
+    nicho: string;
   }>
 ): Promise<void> {
   const properties: Record<string, any> = {};
 
+  if (fields.nicho !== undefined) {
+    properties['Nicho'] = { select: fields.nicho ? { name: fields.nicho } : null };
+  }
   if (fields.instagram !== undefined) {
     properties['Instagram'] = { url: fields.instagram || null };
   }
