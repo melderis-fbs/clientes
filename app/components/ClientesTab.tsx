@@ -36,7 +36,6 @@ export default function ClientesTab() {
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [showConTestimonio, setShowConTestimonio] = useState(false);
-  const [mostrarNoFueron, setMostrarNoFueron] = useState(false);
   const [allOpen, setAllOpen] = useState(false);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
@@ -61,7 +60,7 @@ export default function ClientesTab() {
 
   // Compute filtered list
   const filtered = clientes.filter((c) => {
-    if (!mostrarNoFueron && c.noFue) return false;
+    if (c.noFue) return false;
     if (showConTestimonio && !c.testimonio) return false;
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
@@ -138,16 +137,6 @@ export default function ClientesTab() {
           />
         </div>
         <div className="flex gap-2 flex-wrap">
-          <button
-            onClick={() => setMostrarNoFueron((v) => !v)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors whitespace-nowrap ${
-              mostrarNoFueron
-                ? 'bg-neutral-800 text-white border-neutral-800'
-                : 'border-neutral-300 text-neutral-400 hover:bg-neutral-50'
-            }`}
-          >
-            {mostrarNoFueron ? 'Ocultar no fueron' : 'Ver no fueron'}
-          </button>
           <button
             onClick={() => setShowConTestimonio((v) => !v)}
             className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors whitespace-nowrap ${
