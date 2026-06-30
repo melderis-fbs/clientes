@@ -44,11 +44,15 @@ export default function ClientesTab() {
     setError('');
     try {
       const res = await fetch('/api/clientes');
-      if (!res.ok) throw new Error('Error al cargar clientes');
+      if (!res.ok) {
+        let detail = '';
+        try { detail = await res.text(); } catch {}
+        throw new Error(`HTTP ${res.status}: ${detail || res.statusText}`);
+      }
       const data: Cliente[] = await res.json();
       setClientes(data);
-    } catch {
-      setError('No se pudieron cargar los clientes. Revisá la configuración.');
+    } catch (e) {
+      setError(`No se pudieron cargar los clientes. ${e instanceof Error ? e.message : String(e)}`);
     } finally {
       setLoading(false);
     }
