@@ -112,6 +112,9 @@ export default function ClienteCard({ cliente, onUpdate }: ClienteCardProps) {
             >
               {cliente.nombre || <span className="text-neutral-400 italic">Sin nombre</span>}
             </h3>
+            {cliente.nombreNegocio && (
+              <p className="text-sm font-medium text-neutral-600 mt-0.5">{cliente.nombreNegocio}</p>
+            )}
             {cliente.instagram && (
               <a
                 href={instagramUrl(cliente.instagram)}

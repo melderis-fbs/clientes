@@ -5,6 +5,7 @@ export interface Cliente {
   nicho: string;
   profesion: string;
   negocio: string;
+  nombreNegocio: string;
   aQuienAyuda: string;
   testimonio: string;
   estado: string;
