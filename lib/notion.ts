@@ -60,8 +60,8 @@ export async function fetchClientes(): Promise<Cliente[]> {
       '';
 
     const nombreNegocio =
-      richText(props['negocio(nombre)']?.rich_text) ||
-      richText(props['Negocio(nombre)']?.rich_text) ||
+      richText(props['Negocio (nombre)']?.rich_text) ||
+      richText(props['negocio (nombre)']?.rich_text) ||
       '';
 
     const aQuienAyuda =
